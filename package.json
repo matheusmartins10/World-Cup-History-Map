@@ -21,6 +21,7 @@
     "react-dom": "17.0.1",
     "react-leaflet": "^3.1.0",
     "styled-components": "5.2.1",
+    "@styled-icons/evaicons-outline": "^10.18.0",
     "webpack": "4"
   },
   "devDependencies": {

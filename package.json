@@ -11,7 +11,8 @@
     "generate": "yarn plop --plopfile generators/plopfile.js",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook -s ./public",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@styled-icons/evaicons-outline": "^10.18.0",
@@ -29,6 +30,10 @@
   "devDependencies": {
     "@babel/core": "^7.13.8",
     "@babel/preset-typescript": "^7.13.0",
+    "@graphql-codegen/add": "^2.0.2",
+    "@graphql-codegen/cli": "1.21.3",
+    "@graphql-codegen/typescript": "1.21.1",
+    "@graphql-codegen/typescript-operations": "1.17.15",
     "@storybook/addon-essentials": "6.1.21",
     "@storybook/react": "6.1.21",
     "@testing-library/jest-dom": "^5.11.9",

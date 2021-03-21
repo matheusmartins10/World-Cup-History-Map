@@ -8,6 +8,7 @@ export const GET_PAGES = gql`
       slug
       body {
         html
+        text
       }
     }
   }

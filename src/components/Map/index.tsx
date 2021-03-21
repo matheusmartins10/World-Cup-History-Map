@@ -1,5 +1,4 @@
 import { useRouter } from 'next/dist/client/router'
-import { route } from 'next/dist/next-server/server/router'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 
 type Place = {

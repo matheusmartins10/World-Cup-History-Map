@@ -1,5 +1,8 @@
 import { useRouter } from 'next/dist/client/router'
+import L from 'leaflet'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+
+import * as S from './styles'
 
 type Place = {
   id: string
@@ -19,6 +22,13 @@ const MAPBOX_API_KEY = process.env.NEXT_PUBLIC_MAPBOX_API_KEY
 const MAPBOX_USERID = process.env.NEXT_PUBLIC_MAPBOX_USERID
 const MAPBOX_STYLEID = process.env.NEXT_PUBLIC_MAPBOX_STYLEID
 
+const markerIcon = new L.Icon({
+  iconUrl: 'img/stadium.png',
+  iconSize: [30, 30],
+  iconAnchor: [20, 40],
+  popupAnchor: [0, -40]
+})
+
 const CustomTileLayer = () => {
   return MAPBOX_API_KEY ? (
     <TileLayer
@@ -36,29 +46,31 @@ const Map = ({ places }: MapProps) => {
   const router = useRouter()
 
   return (
-    <MapContainer
-      center={[0, 0]}
-      zoom={3}
-      style={{ height: '100%', width: '100%' }}
-    >
-      <CustomTileLayer />
-      {places?.map(({ id, slug, name, location }) => {
-        const { latitude, longitude } = location
+    <S.MapWrapper>
+      <MapContainer
+        center={[0, 0]}
+        zoom={3}
+        style={{ height: '100%', width: '100%' }}
+      >
+        <CustomTileLayer />
+        {places?.map(({ id, slug, name, location }) => {
+          const { latitude, longitude } = location
 
-        return (
-          <Marker
-            key={`place ${id}`}
-            position={[latitude, longitude]}
-            title={name}
-            eventHandlers={{
-              click: () => {
-                router.push(`/place/${slug}`)
-              }
-            }}
-          />
-        )
-      })}
-    </MapContainer>
+          return (
+            <Marker
+              key={`place-${id}`}
+              position={[latitude, longitude]}
+              title={name}
+              eventHandlers={{
+                click: () => {
+                  router.push(`/place/${slug}`)
+                }
+              }}
+            />
+          )
+        })}
+      </MapContainer>
+    </S.MapWrapper>
   )
 }
 

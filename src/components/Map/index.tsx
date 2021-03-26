@@ -51,6 +51,10 @@ const Map = ({ places }: MapProps) => {
         center={[0, 0]}
         zoom={3}
         style={{ height: '100%', width: '100%' }}
+        maxBounds={[
+          [-180, 180],
+          [180, -180]
+        ]}
       >
         <CustomTileLayer />
         {places?.map(({ id, slug, name, location }) => {
@@ -61,6 +65,7 @@ const Map = ({ places }: MapProps) => {
               key={`place-${id}`}
               position={[latitude, longitude]}
               title={name}
+              icon={markerIcon}
               eventHandlers={{
                 click: () => {
                   router.push(`/place/${slug}`)
